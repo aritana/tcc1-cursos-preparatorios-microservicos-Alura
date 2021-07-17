@@ -25,6 +25,7 @@ class Tarefa {
 
         containerEl.appendChild(itemEl);
     }
+
     static insereItemsNaPagina(containerEl, tarefas) {
         tarefas.forEach(tarefa => tarefa.criaItemsDeListaParaPagina(containerEl))
     }
@@ -47,4 +48,7 @@ const tarefas = [
 ];
 
 let containerEl = document.querySelector("#lista-tarefas");
+//remover tudo
+containerEl.innerHTML = '';
+//insere items
 Tarefa.insereItemsNaPagina(containerEl, tarefas);
