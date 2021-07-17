@@ -18,6 +18,12 @@ class Tarefa {
         const itemEl = document.createRange().createContextualFragment(template);
         itemEl.querySelector('li').classList.add('item-tarefa');
         itemEl.querySelector('li').classList.add(`categoria-${this.categoria}`);
+        //exercicio 05
+        itemEl.querySelector('li').addEventListener('click', (e) => {
+            let el = e.target;
+            el.classList.toggle('marcado');
+            this.realizada = false;
+        })
 
         if (this.realizada) {
             itemEl.querySelector('li').classList.add('marcado');
@@ -55,12 +61,6 @@ buttonIncluirNovaTarefaEl.addEventListener('click', inserirTarefa);
 novaTarefaNomeEl.addEventListener('keyup', verificaTeclado);
 
 
-function verificaTeclado(e) {
-    if (e.key === 'Enter') {
-        inserirTarefa();
-    }
-}
-
 function inserirTarefa() {
     let novaTarefaNome = novaTarefaNomeEl.value;
     let novaTareCategoria = novaTareCategoriaEl.value;
@@ -95,3 +95,12 @@ filtroCategoriaEL.addEventListener('change', () => {
 })
 
 //exercico 04
+
+function verificaTeclado(e) {
+    if (e.key === 'Enter') {
+        inserirTarefa();
+    }
+}
+
+//exercicio 05
+//feito: ver linha: 22
