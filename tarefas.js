@@ -32,15 +32,6 @@ class Tarefa {
 
 }
 
-//li
-// classe item-tarefa
-//se true->  classe marcado
-//categoria: adicione ao classe categoria-NOME
-// chamar a funcao para cada objeto que esta o vetor tarefas.
-//mas remova os filhos que estiverem lá
-
-
-
 //vetor de tarefas
 const tarefas = [
     new Tarefa('Comprar leite', 'compras', false),
@@ -52,3 +43,11 @@ let containerEl = document.querySelector("#lista-tarefas");
 containerEl.innerHTML = '';
 //insere items
 Tarefa.insereItemsNaPagina(containerEl, tarefas);
+
+//exercício 02
+let buttonIncluirNovaTarefaEl = document.querySelector('#incluir-nova-tarefa');
+
+buttonIncluirNovaTarefaEl.addEventListener('click', (e) => {
+    let el = e.currentTarget;
+    console.log(el);
+})
