@@ -51,8 +51,17 @@ let novaTarefaNomeEl = document.querySelector('#nova-tarefa-nome');
 let novaTareCategoriaEl = document.querySelector('#nova-tarefa-categoria');
 
 
-buttonIncluirNovaTarefaEl.addEventListener('click', (e) => {
+buttonIncluirNovaTarefaEl.addEventListener('click', inserirTarefa);
+novaTarefaNomeEl.addEventListener('keyup', verificaTeclado);
 
+
+function verificaTeclado(e) {
+    if (e.key === 'Enter') {
+        inserirTarefa();
+    }
+}
+
+function inserirTarefa() {
     let novaTarefaNome = novaTarefaNomeEl.value;
     let novaTareCategoria = novaTareCategoriaEl.value;
     novaTarefa = new Tarefa(novaTarefaNome, novaTareCategoria, false);
@@ -60,9 +69,9 @@ buttonIncluirNovaTarefaEl.addEventListener('click', (e) => {
     Tarefa.insereItemsNaPagina(containerEl, tarefas);
     novaTarefaNomeEl.value = '';
     // pede o elemento para "roubar o foco" - mover o cursor para dentro dele
-    novaTarefaNomeEl.focus()
+    novaTarefaNomeEl.focus();
+}
 
-})
 
 //exercicio 03
 let filtroCategoriaEL = document.querySelector('#filtro-de-categoria');
@@ -80,8 +89,9 @@ filtroCategoriaEL.addEventListener('change', () => {
 
     for (let itemEl of item) {
         if (itemEl.classList.contains(`categoria-${filtroCategoria}`)) {
-
             itemEl.classList.add('retido-no-filtro');
         }
     }
 })
+
+//exercico 04
