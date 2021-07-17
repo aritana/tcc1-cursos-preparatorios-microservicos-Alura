@@ -16,6 +16,13 @@ class Tarefa {
             </li>
            `;
         const itemEl = document.createRange().createContextualFragment(template);
+        itemEl.querySelector('li').classList.add('item-tarefa');
+        itemEl.querySelector('li').classList.add(`categoria-${this.categoria}`);
+
+        if (this.realizada) {
+            itemEl.querySelector('li').classList.add('marcado');
+        }
+
         containerEl.appendChild(itemEl);
     }
     static insereItemsNaPagina(containerEl, tarefas) {
@@ -41,25 +48,3 @@ const tarefas = [
 
 let containerEl = document.querySelector("#lista-tarefas");
 Tarefa.insereItemsNaPagina(containerEl, tarefas);
-
-
-/*
-let containerEl = document.querySelector("#lista-tarefas");
-//1. cria um elemento
-let t1El = document.createElement('li');
-//2. configuracao
-t1El.classList.add('item-tarefa');
-t1El.classList.add('marcado');
-t1El.innerHTML = "TESTE";
-//3. insere na arvore
-containerEl.appendChild(t1El);
-
-const template = `
-    <li class="item-tarefa marcado">
-        Teste 2
-    </li>
-`
-
-containerEl.innerHTML += template;
-
-*/
