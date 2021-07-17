@@ -63,3 +63,25 @@ buttonIncluirNovaTarefaEl.addEventListener('click', (e) => {
     novaTarefaNomeEl.focus()
 
 })
+
+//exercicio 03
+let filtroCategoriaEL = document.querySelector('#filtro-de-categoria');
+
+filtroCategoriaEL.addEventListener('change', () => {
+
+    let filtroCategoria = filtroCategoriaEL.value;
+    const item = document.querySelectorAll('.item-tarefa');
+    for (let itemEl of item) {
+        if (itemEl.classList.contains('retido-no-filtro')) {
+
+            itemEl.classList.remove('retido-no-filtro');
+        }
+    }
+
+    for (let itemEl of item) {
+        if (itemEl.classList.contains(`categoria-${filtroCategoria}`)) {
+
+            itemEl.classList.add('retido-no-filtro');
+        }
+    }
+})
