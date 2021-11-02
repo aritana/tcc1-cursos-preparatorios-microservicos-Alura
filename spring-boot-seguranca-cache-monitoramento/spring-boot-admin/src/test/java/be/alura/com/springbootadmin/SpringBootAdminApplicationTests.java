@@ -1,4 +1,4 @@
-package be.com.alura.springbootadmin;
+package be.alura.com.springbootadmin;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
