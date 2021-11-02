@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Service
 public class AutenticacaoService implements UserDetailsService {
-    //o formulario irá buscar essa classe para autenticacao
     //a senha ele fara isso em memoria. Precismos consultar a senha no bd
 
     @Autowired
