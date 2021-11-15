@@ -47,6 +47,11 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+*.mvnw
+*.mvnw.cmd
+*.mvn/
+*.iml
+
 
 src/main/resources/application.properties
 .gradle
