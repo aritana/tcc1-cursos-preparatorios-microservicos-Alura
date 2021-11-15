@@ -47,8 +47,9 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
-*.mvnw
-*.mvnw.cmd
+mvnw
+mvnw.cmd
+*.md
 *.mvn/
 *.iml
 

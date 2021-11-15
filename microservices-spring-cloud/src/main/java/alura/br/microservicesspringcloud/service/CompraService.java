@@ -16,10 +16,10 @@ public class CompraService {
     public CompraService(FornecedorServiceCore fornecedorServiceCore){
         this.fornecedorServiceCore =fornecedorServiceCore;
     }
-    public void realizaCompra(CompraDTO compra) {
+    public InfoFornecedorDto realizaCompra(CompraDTO compra) {
 
         String estado = compra.getEndereco().getEstado();
         InfoFornecedorDto infoFornecedorDto= fornecedorServiceCore.getFornecedorList(estado);
-
+        return infoFornecedorDto;
     }
 }

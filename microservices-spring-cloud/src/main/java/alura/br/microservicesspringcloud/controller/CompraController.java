@@ -1,9 +1,12 @@
 package alura.br.microservicesspringcloud.controller;
 
 import alura.br.microservicesspringcloud.dto.CompraDTO;
+import alura.br.microservicesspringcloud.dto.InfoFornecedorDto;
 import alura.br.microservicesspringcloud.service.CompraService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +21,11 @@ public class CompraController {
     CompraService compraService;
 
     @PostMapping(value = "/compra")
-    public String realizaCompra(@RequestBody CompraDTO compra) {
+    public  ResponseEntity<InfoFornecedorDto> realizaCompra(@RequestBody CompraDTO compra) {
 
-       String estado =  compraService.realizaCompra(compra);
+        InfoFornecedorDto infoFornecedorDto =  compraService.realizaCompra(compra);
 
-       return estado;
+        return new ResponseEntity(infoFornecedorDto, HttpStatus.OK);
 
     }
 }
