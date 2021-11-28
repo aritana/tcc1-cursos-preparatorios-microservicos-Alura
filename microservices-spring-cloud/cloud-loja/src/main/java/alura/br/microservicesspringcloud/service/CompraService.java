@@ -2,7 +2,6 @@ package alura.br.microservicesspringcloud.service;
 
 import alura.br.microservicesspringcloud.dto.CompraDTO;
 import alura.br.microservicesspringcloud.dto.InfoFornecedorDto;
-import alura.br.microservicesspringcloud.networking.model.response.InfoFornecedorList;
 import alura.br.microservicesspringcloud.networking.service.FornecedorServiceCore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
