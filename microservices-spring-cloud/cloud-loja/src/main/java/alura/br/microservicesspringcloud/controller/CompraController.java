@@ -24,9 +24,7 @@ public class CompraController {
     public  ResponseEntity<InfoFornecedorDto> realizaCompra(@RequestBody CompraDTO compra) {
 
         InfoFornecedorDto infoFornecedorDto =  compraService.realizaCompra(compra);
-
         return new ResponseEntity(infoFornecedorDto, HttpStatus.OK);
-
     }
 }
 

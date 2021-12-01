@@ -54,7 +54,7 @@ mvnw.cmd
 *.iml
 
 
-src/main/resources/application.properties
+
 .gradle
 **/build/
 !src/**/build/
