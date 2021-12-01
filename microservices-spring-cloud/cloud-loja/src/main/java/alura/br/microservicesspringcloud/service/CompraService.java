@@ -26,6 +26,7 @@ public class CompraService {
         logger.debug("Debug log message");
         logger.info("Info log message");
         logger.error("Error log message");
+        lo
 
 
         InfoFornecedorDto infoFornecedorDto= fornecedorServiceCore.getFornecedorList(estado);
