@@ -22,12 +22,7 @@ public class CompraService {
     public InfoFornecedorDto realizaCompra(CompraDTO compra) {
 
         String estado = compra.getEndereco().getEstado();
-
-        logger.debug("Debug log message");
-        logger.info("Info log message");
-        logger.error("Error log message");
-        lo
-
+        logger.info("Buscando informações do fornecedor de {}",estado);
 
         InfoFornecedorDto infoFornecedorDto= fornecedorServiceCore.getFornecedorList(estado);
         return infoFornecedorDto;
