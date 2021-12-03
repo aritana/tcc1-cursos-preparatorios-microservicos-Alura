@@ -24,10 +24,13 @@ public class InfoController {
     private static Logger logger = LoggerFactory.getLogger(SLF4JLogger.class);
 
     @GetMapping(value = "/{estado}")
-    public ResponseEntity<InfoFornecedor> getInfoPorEstado(@PathVariable("estado") String estado) {
+    public ResponseEntity<InfoFornecedor> getInfoPorEstado(@PathVariable("estado") String estado) throws Exception {
 
         logger.info("Recebido pedido de informações do fornecedor de {}",estado);
         InfoFornecedor infoFornecedor = infoservice.getInfoPorEstado(estado);
+        if(infoFornecedor != null){
+            throw new Exception("Erro");
+        }
         return new ResponseEntity(infoFornecedor, HttpStatus.OK);
 
 

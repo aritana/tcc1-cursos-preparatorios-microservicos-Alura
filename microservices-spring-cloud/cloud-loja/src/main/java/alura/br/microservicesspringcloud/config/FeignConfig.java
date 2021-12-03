@@ -1,5 +1,6 @@
 package alura.br.microservicesspringcloud.config;
 
+import alura.br.microservicesspringcloud.networking.config.FornecedorErrorDecoder;
 import alura.br.microservicesspringcloud.networking.service.FornecedorServiceCore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Client;
@@ -47,7 +48,8 @@ public class FeignConfig {
         mapper.findAndRegisterModules();
 
         return Feign.builder()
-                .encoder(new JacksonEncoder(mapper))
+                .errorDecoder(new FornecedorErrorDecoder())
+                .encoder(new JacksonEncoder())
                 .decoder(new JacksonDecoder(mapper))
                 .retryer(Retryer.NEVER_RETRY)
                 .client(client)
