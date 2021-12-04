@@ -4,13 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
+
 public class CompraDTO {
 
+
+    private String teste;
     private List<ItemDaCompraDto> itens;
-    private EnderecoDto endereco;
+    @Valid private EnderecoDto endereco;
 }

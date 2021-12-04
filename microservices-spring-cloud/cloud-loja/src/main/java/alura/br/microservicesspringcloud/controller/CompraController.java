@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @Api
 @RestController
 @RequestMapping(value="v1")
@@ -21,7 +23,7 @@ public class CompraController {
     CompraService compraService;
 
     @PostMapping(value = "/compra")
-    public  ResponseEntity<InfoFornecedorDto> realizaCompra(@RequestBody CompraDTO compra) {
+    public  ResponseEntity<InfoFornecedorDto> realizaCompra(@RequestBody @Valid CompraDTO compra) {
 
         InfoFornecedorDto infoFornecedorDto =  compraService.realizaCompra(compra);
         return new ResponseEntity(infoFornecedorDto, HttpStatus.OK);

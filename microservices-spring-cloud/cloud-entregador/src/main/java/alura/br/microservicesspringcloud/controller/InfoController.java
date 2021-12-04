@@ -28,9 +28,16 @@ public class InfoController {
 
         logger.info("Recebido pedido de informações do fornecedor de {}",estado);
         InfoFornecedor infoFornecedor = infoservice.getInfoPorEstado(estado);
-        if(infoFornecedor != null){
-            throw new Exception("Erro");
+        try{
+            if(infoFornecedor != null){
+                throw new Exception("Erro ao consultar estado");
+
+            }
         }
+        catch (Exception exception){
+            logger.info("Exception exception occured: {}",exception.getMessage());
+        }
+
         return new ResponseEntity(infoFornecedor, HttpStatus.OK);
 
 
