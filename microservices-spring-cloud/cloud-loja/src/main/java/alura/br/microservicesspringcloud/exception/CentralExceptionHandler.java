@@ -1,6 +1,9 @@
 package alura.br.microservicesspringcloud.exception;
 
 import alura.br.microservicesspringcloud.exception.config.ErroDeFormularioDto;
+import org.apache.logging.slf4j.SLF4JLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -19,6 +22,7 @@ public class CentralExceptionHandler {
 
     @Autowired
     private MessageSource messageSource;
+    private static Logger logger = LoggerFactory.getLogger(SLF4JLogger.class);
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -32,6 +36,7 @@ public class CentralExceptionHandler {
             ErroDeFormularioDto erro = new ErroDeFormularioDto(e.getField(), mensagem);
             dto.add(erro);
         });
+        logger.info("Exception: MethodArgumentNotValidException {}",exception.getMessage());
         return  dto;
     }
 }

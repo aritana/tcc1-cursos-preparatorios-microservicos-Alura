@@ -1,6 +1,11 @@
 package alura.br.microservicesspringcloud.exception;
 
+import alura.br.microservicesspringcloud.dto.responseError.InfoFornecedorErrorDto;
+import alura.br.microservicesspringcloud.dto.responseError.InfoFornecedorListErrorDto;
 import alura.br.microservicesspringcloud.exception.config.ErroDeFormularioDto;
+import org.apache.logging.slf4j.SLF4JLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -19,11 +24,12 @@ public class CentralExceptionHandler {
 
     @Autowired
     private MessageSource messageSource;
+    private static Logger logger = LoggerFactory.getLogger(SLF4JLogger.class);
 
     //captura erros de validacao
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErroDeFormularioDto> handle(MethodArgumentNotValidException exception) {
+    public List<ErroDeFormularioDto> handleValidation(MethodArgumentNotValidException exception) {
 
         List<ErroDeFormularioDto> dto = new ArrayList<>();
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
@@ -33,6 +39,21 @@ public class CentralExceptionHandler {
             ErroDeFormularioDto erro = new ErroDeFormularioDto(e.getField(), mensagem);
             dto.add(erro);
         });
+        logger.info("Exception: MethodArgumentNotValidException {}",exception.getMessage());
         return  dto;
+    }
+
+    //captura erros de validacao
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NullPointerException.class)
+    public List<InfoFornecedorErrorDto> handleNullPointer(NullPointerException exception) {
+
+        List<InfoFornecedorErrorDto> infoFornecedorErrorDtoList = new ArrayList<>();
+        InfoFornecedorErrorDto infoFornecedorErrorDto =  new InfoFornecedorErrorDto("Cidade não pode ser Encontrada.");
+        infoFornecedorErrorDtoList.add(infoFornecedorErrorDto);
+
+        logger.info("NullPointerException {}",exception.getMessage());
+        return infoFornecedorErrorDtoList;
+
     }
 }
