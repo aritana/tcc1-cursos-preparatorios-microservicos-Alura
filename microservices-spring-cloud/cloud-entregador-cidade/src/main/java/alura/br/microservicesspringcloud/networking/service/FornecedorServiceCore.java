@@ -6,6 +6,7 @@ import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
 
+//nao utilizado.
 public interface FornecedorServiceCore {
 
     @RequestLine("GET " + LojaEndPointConstants.FORNECEDOR_GET_INFO)

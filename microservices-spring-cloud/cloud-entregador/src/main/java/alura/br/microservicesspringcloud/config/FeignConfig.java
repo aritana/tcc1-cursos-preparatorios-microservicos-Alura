@@ -1,7 +1,7 @@
 package alura.br.microservicesspringcloud.config;
 
 import alura.br.microservicesspringcloud.networking.config.FornecedorErrorDecoder;
-import alura.br.microservicesspringcloud.networking.service.FornecedorServiceCore;
+import alura.br.microservicesspringcloud.networking.service.FornecedorCidadeServiceCore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Client;
 import feign.Feign;
@@ -42,7 +42,7 @@ public class FeignConfig {
     }
 
     @Bean
-    FornecedorServiceCore fornecedorServiceCore(@Value("${endpoint.fornecedor.url}") String url) {
+    FornecedorCidadeServiceCore fornecedorServiceCore(@Value("${endpoint.fornecedor.url}") String url) {
 
         mapper.findAndRegisterModules();
 
@@ -52,7 +52,7 @@ public class FeignConfig {
                 .decoder(new JacksonDecoder(mapper))
                 .retryer(Retryer.NEVER_RETRY)
                 .client(client)
-                .target(FornecedorServiceCore.class, url);
+                .target(FornecedorCidadeServiceCore.class, url);
     }
 
 }

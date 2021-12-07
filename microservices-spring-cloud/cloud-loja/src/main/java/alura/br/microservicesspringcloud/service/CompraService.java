@@ -19,6 +19,7 @@ public class CompraService {
     public CompraService(FornecedorServiceCore fornecedorServiceCore){
         this.fornecedorServiceCore =fornecedorServiceCore;
     }
+
     public InfoFornecedorDto realizaCompra(CompraDTO compra) {
 
         String estado = compra.getEndereco().getEstado();

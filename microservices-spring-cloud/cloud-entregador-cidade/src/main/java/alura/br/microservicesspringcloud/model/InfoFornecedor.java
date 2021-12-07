@@ -12,12 +12,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="fornecedorEstado")
+@Table(name="fornecedorCidade")
 public class InfoFornecedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    private String estado;
+    private String cidade;
 }

@@ -5,6 +5,7 @@ import alura.br.microservicesspringcloud.networking.service.FornecedorServiceCor
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Client;
 import feign.Feign;
+import feign.Request.Options;
 import feign.Retryer;
 import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;

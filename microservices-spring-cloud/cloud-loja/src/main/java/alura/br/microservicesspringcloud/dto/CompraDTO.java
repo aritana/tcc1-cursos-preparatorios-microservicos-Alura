@@ -15,8 +15,7 @@ import java.util.List;
 
 public class CompraDTO {
 
-
-    private String teste;
     private List<ItemDaCompraDto> itens;
     @Valid private EnderecoDto endereco;
+
 }

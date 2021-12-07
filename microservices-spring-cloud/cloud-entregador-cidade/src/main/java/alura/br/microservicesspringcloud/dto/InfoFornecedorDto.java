@@ -1,5 +1,6 @@
 package alura.br.microservicesspringcloud.dto;
 
+import alura.br.microservicesspringcloud.model.InfoFornecedor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class InfoFornecedorDto {
 
-    private long id;
     private String nome;
-    private String estado;
-    private String endereco;
+    private String cidade;
+
+    public static InfoFornecedorDto map(InfoFornecedor infoFornecedor) {
+        return new InfoFornecedorDto(infoFornecedor.getNome(), infoFornecedor.getCidade());
+    }
 }
