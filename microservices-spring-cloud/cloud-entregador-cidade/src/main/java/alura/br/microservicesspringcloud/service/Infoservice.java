@@ -10,7 +10,8 @@ public class Infoservice {
     @Autowired
     private InfoRepository infoRepository;
     public InfoFornecedor getInfoPorEstado(String cidade) {
-        InfoFornecedor infoFornecedor = infoRepository.findByCidade(cidade);
-        return infoFornecedor;
+
+        return  infoRepository.findByCidade(cidade);
+
     }
 }

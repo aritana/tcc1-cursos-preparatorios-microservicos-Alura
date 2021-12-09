@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,16 +45,18 @@ public class CentralExceptionHandler {
     }
 
     //captura erros de validacao
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(NullPointerException.class)
-    public List<InfoFornecedorErrorDto> handleNullPointer(NullPointerException exception) {
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public InfoFornecedorErrorDto handleNotFound(NotFoundException exception) {
 
-        List<InfoFornecedorErrorDto> infoFornecedorErrorDtoList = new ArrayList<>();
-        InfoFornecedorErrorDto infoFornecedorErrorDto =  new InfoFornecedorErrorDto("Cidade não pode ser Encontrada.");
-        infoFornecedorErrorDtoList.add(infoFornecedorErrorDto);
+        InfoFornecedorErrorDto infoFornecedorErrorDto = InfoFornecedorErrorDto.builder()
+                .timestamp(String.valueOf(LocalTime.now()))
+                .status("404")
+                .error(HttpStatus.NOT_FOUND.getReasonPhrase())
+                .message(exception.getMessage()).build();
 
-        logger.info("NullPointerException {}",exception.getMessage());
-        return infoFornecedorErrorDtoList;
-
+        logger.debug("NotFoundException {}",exception.getMessage());
+        return infoFornecedorErrorDto;
     }
+
 }

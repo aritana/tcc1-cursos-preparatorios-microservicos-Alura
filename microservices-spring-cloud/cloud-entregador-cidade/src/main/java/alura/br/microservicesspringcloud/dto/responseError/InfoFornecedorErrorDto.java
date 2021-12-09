@@ -1,17 +1,19 @@
 package alura.br.microservicesspringcloud.dto.responseError;
 
 import alura.br.microservicesspringcloud.model.InfoFornecedor;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class InfoFornecedorErrorDto {
 
+    private String timestamp;
+    private String status;
+    private String error;
     private String message;
+    private String trace_id;
 
 }

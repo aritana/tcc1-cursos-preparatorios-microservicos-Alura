@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,30 +44,23 @@ public class CentralExceptionHandler {
         logger.info("Exception: MethodArgumentNotValidException {}",exception.getMessage());
         return  dto;
     }
+
     //captura erros de validacao
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(NullPointerException.class)
-    public List<InfoFornecedorErrorDto> handleNullPointer(NullPointerException exception) {
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public List<InfoFornecedorErrorDto> handleNotFound(NotFoundException exception) {
 
         List<InfoFornecedorErrorDto> infoFornecedorErrorDtoList = new ArrayList<>();
-        InfoFornecedorErrorDto infoFornecedorErrorDto =  new InfoFornecedorErrorDto("Estado não pode ser Encontrado.");
+
+        InfoFornecedorErrorDto infoFornecedorErrorDto = InfoFornecedorErrorDto.builder()
+                .timestamp(String.valueOf(LocalTime.now()))
+                .status("404")
+                .error(HttpStatus.NOT_FOUND.getReasonPhrase())
+                .message(exception.getMessage()).build();
+
         infoFornecedorErrorDtoList.add(infoFornecedorErrorDto);
 
-        logger.info("NullPointerException {}",exception.getMessage());
+        logger.debug("NotFoundException {}",exception.getMessage());
         return infoFornecedorErrorDtoList;
-
-    }
-    //captura badrequest de outro servico
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(BadRequestException.class)
-    public List<InfoFornecedorErrorDto> handleBadRequest(BadRequestException exception) {
-
-        List<InfoFornecedorErrorDto> infoFornecedorErrorDtoList = new ArrayList<>();
-        InfoFornecedorErrorDto infoFornecedorErrorDto =  new InfoFornecedorErrorDto("Cidade não pode ser Encontrada.");
-        infoFornecedorErrorDtoList.add(infoFornecedorErrorDto);
-
-        logger.info("BadRequestException {}",exception.getMessage());
-        return infoFornecedorErrorDtoList;
-
     }
 }

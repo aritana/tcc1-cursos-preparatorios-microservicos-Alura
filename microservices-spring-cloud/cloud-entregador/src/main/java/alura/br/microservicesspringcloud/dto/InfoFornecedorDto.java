@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class InfoFornecedorDto {
 
     private String nomeFornecedorEstado;
@@ -18,6 +19,8 @@ public class InfoFornecedorDto {
     private String cidade;
 
     public static InfoFornecedorDto map(InfoFornecedor infoFornecedor,InfoFornecedorCidadeDto infoFornecedorCidadeDto) {
+
+
         return new InfoFornecedorDto(infoFornecedor.getNome(), infoFornecedor.getEstado(),infoFornecedorCidadeDto.getNome(), infoFornecedorCidadeDto.getCidade());
     }
 }
