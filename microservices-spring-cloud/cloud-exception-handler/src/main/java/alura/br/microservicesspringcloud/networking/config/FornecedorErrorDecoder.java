@@ -14,29 +14,30 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.InputStream;
 
+
 public class FornecedorErrorDecoder implements ErrorDecoder {
     private static Logger logger = LoggerFactory.getLogger(SLF4JLogger.class);
-
     @Override
     public Exception decode(String methodKey, Response response) throws RuntimeException {
-        String[] body = {null};
+        String[]body={null};
         String bodyError;
         ResponseError responseError = null;
-        if (response.body() != null) {
-            try {
-                InputStream inputStream = response.body().asInputStream();
-                body[0] = IOUtils.toString(inputStream);
+        if(response.body()!=null){
+            try{
+                InputStream inputStream =  response.body().asInputStream();
+                body[0]= IOUtils.toString(inputStream);
                 bodyError = body[0];
 
                 ObjectMapper objectMapper = new ObjectMapper();
                 responseError = objectMapper.readValue(bodyError, ResponseError.class);
-            } catch (IOException e) {
-                logger.error("IOException {}", "Erro ao fazer o parse do response.body de outro serviço no ErrorDecoder");
+             }
+            catch (IOException e){
+                logger.error("IOException {}","Erro ao fazer o parse do response.body de outro serviço no ErrorDecoder");
                 throw new ServerErrorException("Internal Error");
             }
         }
 
-        switch (response.status()) {
+        switch (response.status()){
             case 400:
                 return new BadRequestException();
             case 404:

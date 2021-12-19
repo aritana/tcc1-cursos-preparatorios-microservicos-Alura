@@ -11,6 +11,6 @@ public interface FornecedorServiceCore {
     @RequestLine("GET " + LojaEndPointConstants.FORNECEDOR_GET_INFO)
     @Headers({"Content-Type: application/json"})
     InfoFornecedorDto getFornecedorList(
-            @Param("estado") String estado);//nao preciso lancar excecoes como  badrequestEx..?
+            @Param("estado") String estado, @Param("cidade") String cidade);//nao preciso lancar excecoes como  badrequestEx..?
 }
 

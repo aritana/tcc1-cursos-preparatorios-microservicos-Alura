@@ -5,6 +5,9 @@ import alura.br.microservicesspringcloud.model.InfoFornecedor;
 import javafx.scene.control.TableRow;
 import lombok.*;
 import net.bytebuddy.implementation.bytecode.Throw;
+import org.apache.logging.slf4j.SLF4JLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Setter
 @Getter
@@ -15,8 +18,9 @@ public class InfoFornecedorDto {
 
     private String nome;
     private String cidade;
+    private static Logger logger = LoggerFactory.getLogger(SLF4JLogger.class);
 
-    public static InfoFornecedorDto map(InfoFornecedor infoFornecedor) throws NotFoundException{
+        public static InfoFornecedorDto map(InfoFornecedor infoFornecedor) throws NotFoundException{
 
         InfoFornecedorDto infoFornecedorDto = null;
         try {
@@ -27,7 +31,9 @@ public class InfoFornecedorDto {
                     .cidade(cidade)
                     .build();
 
-        }catch (NullPointerException e){
+        }catch (NullPointerException exception){
+
+            logger.info("NullPointerException {}",exception);
             throw new NotFoundException("Cidade não encontrada");
         }
 

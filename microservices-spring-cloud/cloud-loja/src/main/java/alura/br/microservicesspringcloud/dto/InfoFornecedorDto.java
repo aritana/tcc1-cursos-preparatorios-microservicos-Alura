@@ -1,18 +1,16 @@
 package alura.br.microservicesspringcloud.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class InfoFornecedorDto {
 
-    private long id;
-    private String nome;
+    private String nomeFornecedorEstado;
     private String estado;
-    private String endereco;
+    private String nomeFornecedorCidade;
+    private String cidade;
 }

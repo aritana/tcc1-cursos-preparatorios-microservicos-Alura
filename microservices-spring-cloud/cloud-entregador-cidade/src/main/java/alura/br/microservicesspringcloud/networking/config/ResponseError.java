@@ -1,6 +1,5 @@
-package alura.br.microservicesspringcloud.dto.responseError;
+package alura.br.microservicesspringcloud.networking.config;
 
-import alura.br.microservicesspringcloud.model.InfoFornecedor;
 import lombok.*;
 
 @Setter
@@ -8,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class InfoFornecedorErrorDto {
+public class ResponseError {
 
     private String timestamp;
     private String status;
