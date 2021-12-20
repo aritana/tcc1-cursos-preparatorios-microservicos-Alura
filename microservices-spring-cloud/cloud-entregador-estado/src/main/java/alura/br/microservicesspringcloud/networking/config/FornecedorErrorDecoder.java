@@ -33,8 +33,6 @@ public class FornecedorErrorDecoder implements ErrorDecoder {
             catch (IOException exception){
                 logger.error("IOException {}","Erro ao coletar body da resposta de outro serviço no ErrorDecoder");
             }
-
-
         }
 
         switch (response.status()){

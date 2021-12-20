@@ -23,7 +23,7 @@ public class MicroservicesSpringCloudApplication implements CommandLineRunner {
 
 
         //https://cloud.mongodb.com/v2/61b7e2d2053861179fc7707c#clusters
-        MongoDb.client = MongoClients.create("mongodb+srv://root:root@cluster0.6m67u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+        MongoDb.client = MongoClients.create("mongodb+srv://root:root@cluster0.6m67u.mongodb.net/exceptionHandlerDB?retryWrites=true&w=majority");
 
     }
 }
