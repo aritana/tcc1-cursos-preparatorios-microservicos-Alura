@@ -1,7 +1,6 @@
 package alura.br.microservicesspringcloud.controller;
 
 import alura.br.microservicesspringcloud.config.MongoDb;
-import com.google.gson.Gson;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import io.swagger.annotations.Api;
@@ -11,8 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Api
 @RestController
@@ -47,15 +47,37 @@ public class HelloController {
         } catch (Exception exception) {
             System.out.println("--------------------------------------------------------------");
 
-            Gson gson = new Gson();
+           /* Gson gson = new Gson();
             Map<String, Throwable> exc_map = new HashMap<>();
-            exc_map.put("root cause", exception.getCause());
-            gson.toJson(exc_map);
-            System.out.println(gson.toJson(exc_map));
+            exc_map.put("cause", exception.getCause());*/
 
-            Document novoALuno = new Document("nome", "Exception1")
-                    .append("cause",gson.toJson(exc_map));
-            alunos.insertOne(novoALuno);
+            /** tentar capturar todas causes*/
+
+            List<Throwable> causes = new ArrayList<Throwable>();
+            List<String> causesString = new ArrayList<String>();
+
+            causes.add(exception);
+            Throwable cause = exception.getCause();
+
+            //criando document
+            Document exceptionDocument = new Document("Service", "Exception Handler");
+            exceptionDocument.append("Exception", exception.toString());
+
+            int i = 1;
+            while (cause != null) {
+                causes.add(cause);
+                causesString.add(cause.toString());
+                cause = causes.get(i).getCause();
+                // exceptionDocument.append("sub",new Document("Caused by",cause.toString()));
+
+                i++;
+            }
+            exceptionDocument.append("Caused by", causesString);
+
+
+            /*criar Document, abstração Json*/
+            alunos.insertOne(exceptionDocument);
+
 //          StackTraceElement[] traceElements = exception.getStackTrace();
 //         for (StackTraceElement element : traceElements) {
 //                System.out.printf("%s\t", element.getClassName());
@@ -76,8 +98,8 @@ public class HelloController {
     public void method1() throws Exception {
         try {
             method2();
-        }catch (Exception exception) {
-            throw new Exception("Exception thrown in method2", exception);
+        } catch (Exception exception) {
+            throw new Exception("Exception thrown in method1", exception);
         }
     }
 
@@ -91,6 +113,14 @@ public class HelloController {
     }
 
     public void method3() throws Exception {
-        throw new Exception("Exception thrown in method3");
+
+        try {
+            int i = 4 / 0;
+        } catch (ArithmeticException exception) {
+
+            IOException ioException = new IOException("Exception thrown in method3");
+            ioException.initCause(exception);
+            throw ioException;
+        }
     }
 }
