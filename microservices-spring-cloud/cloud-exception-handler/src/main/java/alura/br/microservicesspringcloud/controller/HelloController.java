@@ -66,7 +66,14 @@ public class HelloController {
             int i = 1;
             while (cause != null) {
                 causes.add(cause);
-                causesString.add(cause.toString());
+                String[] className = cause.getStackTrace()[0].getClassName().split("\\.");
+                int tam = className.length - 1;
+
+                String message = cause.toString()
+                        + " - Class: " + className[tam]
+                        + " - Method: " + cause.getStackTrace()[0].getMethodName()
+                        + "- Line: " + cause.getStackTrace()[0].getLineNumber();
+                causesString.add(message);
                 cause = causes.get(i).getCause();
                 // exceptionDocument.append("sub",new Document("Caused by",cause.toString()));
 
