@@ -1,10 +1,15 @@
 package alura.br.microservicesspringcloud.controller;
 
 import alura.br.microservicesspringcloud.config.MongoDb;
+import alura.br.microservicesspringcloud.service.TraceService;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import io.swagger.annotations.Api;
+import org.apache.logging.slf4j.SLF4JLogger;
 import org.bson.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +23,10 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "hello")
 public class HelloController {
+
+    @Autowired
+    TraceService traceService;
+    private static Logger logger = LoggerFactory.getLogger(SLF4JLogger.class);
 
     @GetMapping(value = "/{firstname}/{lastname}")
     public String hello(@PathVariable("firstname") String firstname, @PathVariable("lastname") String lastname) {
@@ -61,7 +70,9 @@ public class HelloController {
 
             //criando document
             Document exceptionDocument = new Document("Service", "Exception Handler");
+            exceptionDocument.append("TraceId", traceService.getTraceId());
             exceptionDocument.append("Exception", exception.toString());
+//id
 
             int i = 1;
             while (cause != null) {
