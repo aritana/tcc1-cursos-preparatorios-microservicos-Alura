@@ -2,6 +2,7 @@ package alura.br.microservicesspringcloud.exception;
 
 import alura.br.microservicesspringcloud.exception.config.ErroDeFormularioDto;
 import alura.br.microservicesspringcloud.networking.config.ResponseError;
+import alura.br.microservicesspringcloud.service.TraceService;
 import org.apache.logging.slf4j.SLF4JLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,9 @@ public class CentralExceptionHandler {
 
     @Autowired
     private MessageSource messageSource;
+    @Autowired
+    TraceService traceService;
+
     private static Logger logger = LoggerFactory.getLogger(SLF4JLogger.class);
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -50,6 +54,7 @@ public class CentralExceptionHandler {
                     .timestamp(String.valueOf(LocalTime.now()))
                     .status("404")
                     .error(HttpStatus.NOT_FOUND.getReasonPhrase())
+                    .trace_id(traceService.getTraceId())
                     .message(exception.getMessage()).build();
         }else{//a resposta chegou preenchida de outro serviçp
             responseError = exception.responseError;
