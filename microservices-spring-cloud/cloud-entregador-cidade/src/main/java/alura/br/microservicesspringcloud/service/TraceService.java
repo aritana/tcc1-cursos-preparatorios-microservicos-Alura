@@ -11,9 +11,16 @@ public class TraceService {
     public TraceService(Tracer tracer) {
         this.tracer = tracer;
     }
+
     public void printTraceId() {
         Span span = tracer.currentSpan();
         String traceId = span.context().traceIdString();
         System.out.println(traceId);
+    }
+
+    public String getTraceId() {
+        Span span = tracer.currentSpan();
+        String traceId = span.context().traceIdString();
+        return traceId;
     }
 }

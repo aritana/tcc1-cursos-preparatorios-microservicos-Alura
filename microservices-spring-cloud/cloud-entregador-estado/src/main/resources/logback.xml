@@ -4,8 +4,8 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <appender name="PAPERTRAIL" class="ch.qos.logback.classic.net.SyslogAppender">
-        <syslogHost>logs3.papertrailapp.com</syslogHost>
-        <port>13320</port>
+        <syslogHost>logs6.papertrailapp.com</syslogHost>
+        <port>43833</port>
         <facility>USER</facility>
         <!--pattern abaixo foi copiada de https://cloud.spring.io/spring-cloud-static/spring-cloud-sleuth/2.1.0.RELEASE/single/spring-cloud-sleuth.html#_json_logback_with_logstash-->
         <suffixPattern>%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</suffixPattern>
@@ -16,7 +16,7 @@
                 %msg%n</pattern>
         </encoder>
     </appender>
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="PAPERTRAIL" />
     </root>
