@@ -2,6 +2,7 @@ package alura.br.microservicesspringcloud.networking.config;
 
 import alura.br.microservicesspringcloud.exception.BadRequestException;
 import alura.br.microservicesspringcloud.exception.NotFoundException;
+import alura.br.microservicesspringcloud.exception.ServerErrorException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Response;
 import feign.codec.ErrorDecoder;
@@ -35,11 +36,13 @@ public class FornecedorErrorDecoder implements ErrorDecoder {
             }
         }
 
-        switch (response.status()){
+        switch (response.status()) {
             case 400:
-                return new BadRequestException();
+                return new BadRequestException(responseError);
             case 404:
-                return new NotFoundException();
+                return new NotFoundException(responseError);
+            case 500:
+                return new ServerErrorException(responseError);
             default:
                 return new Exception("Generic error");
         }

@@ -38,11 +38,11 @@ public class FornecedorErrorDecoder implements ErrorDecoder {
 
         switch (response.status()) {
             case 400:
-                return new BadRequestException();
+                return new BadRequestException(responseError);
             case 404:
                 return new NotFoundException(responseError);
             case 500:
-                return new ServerErrorException();
+                return new ServerErrorException(responseError);
             default:
                 return new Exception("Generic error");
         }

@@ -11,6 +11,11 @@ public interface FornecedorServiceCore {
     @RequestLine("GET " + LojaEndPointConstants.FORNECEDOR_GET_INFO)
     @Headers({"Content-Type: application/json"})
     InfoFornecedorDto getFornecedorList(
-            @Param("estado") String estado, @Param("cidade") String cidade);//nao preciso lancar excecoes como  badrequestEx..?
+            @Param("estado") String estado, @Param("cidade") String cidade);
+
+    @RequestLine("GET " + LojaEndPointConstants.FORNECEDOR_GENERATE_EXCEPTION)
+    @Headers({"Content-Type: application/json"})
+    void generateException(
+            @Param("exceptioncode") String exceptioncode, @Param("service") String service);
 }
 

@@ -8,6 +8,10 @@ public class ServerErrorException extends RuntimeException {
     public ServerErrorException() {
     }
 
+    public ServerErrorException(ResponseError responseError) {
+        this.responseError = responseError;
+    }
+
     public ServerErrorException(String message) {
         super(message);
     }

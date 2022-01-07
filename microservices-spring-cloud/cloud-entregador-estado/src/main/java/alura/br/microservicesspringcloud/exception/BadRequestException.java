@@ -1,8 +1,14 @@
 package alura.br.microservicesspringcloud.exception;
 
-public class BadRequestException extends Exception {
+import alura.br.microservicesspringcloud.networking.config.ResponseError;
 
+public class BadRequestException extends Exception {
+    ResponseError responseError;
     public BadRequestException() {
+    }
+    public BadRequestException(ResponseError responseError) {
+
+        this.responseError =  responseError;
     }
 
     public BadRequestException(String message) {

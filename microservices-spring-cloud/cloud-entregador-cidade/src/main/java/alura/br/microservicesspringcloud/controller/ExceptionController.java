@@ -16,8 +16,8 @@ public class ExceptionController {
     @Autowired
     ExceptionGenerator exceptionGenerator;
 
-    @GetMapping(value = "/{exceptioncode}")
-    public void exceptionSelector(@PathVariable("exceptioncode") String exceptionCodeInitCause) {
+    @GetMapping(value = "/{exceptioncode}/{service}")
+    public void exceptionSelector(@PathVariable("exceptioncode") String exceptionCodeInitCause, @PathVariable("service") String service) {
 
         switch (exceptionCodeInitCause) {
             case "1"://arithmeticException
