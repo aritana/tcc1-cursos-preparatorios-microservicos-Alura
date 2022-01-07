@@ -2,7 +2,7 @@ package alura.br.microservicesspringcloud.exception;
 
 import alura.br.microservicesspringcloud.networking.config.ResponseError;
 
-public class NotFoundException extends Exception{
+public class NotFoundException extends RuntimeException{
 
     ResponseError responseError;
 

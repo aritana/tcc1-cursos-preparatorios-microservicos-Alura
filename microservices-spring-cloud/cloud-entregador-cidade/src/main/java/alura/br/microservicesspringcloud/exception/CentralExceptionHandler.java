@@ -19,7 +19,6 @@ public class CentralExceptionHandler {
 
     @Autowired
     TraceService traceService;
-
     @Autowired
     MongoDBHandleException mongoDBHandleException;
 
