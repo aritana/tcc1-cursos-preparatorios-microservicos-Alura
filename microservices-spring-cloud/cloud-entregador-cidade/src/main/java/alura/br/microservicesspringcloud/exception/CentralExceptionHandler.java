@@ -41,20 +41,28 @@ public class CentralExceptionHandler {
             responseError = exception.responseError;
         }
         logger.debug("NotFoundException {}", exception.getMessage());
+
+        //Agregar exceções na central de armazenamento de exceções
+        mongoDBHandleException.saveException(exception);
+
         return responseError;
     }
 
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(ServerErrorException.class)
     public ResponseError handleServerError(ServerErrorException exception) {
+        ResponseError responseError;
 
-        ResponseError responseError = ResponseError.builder()
-                .timestamp(String.valueOf(LocalTime.now()))
-                .status("500")
-                .error(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())
-                .trace_id(traceService.getTraceId())
-                .message(exception.getMessage()).build();
-
+        if (exception.responseError == null) {
+            responseError = ResponseError.builder()
+                    .timestamp(String.valueOf(LocalTime.now()))
+                    .status("500")
+                    .error(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())
+                    .trace_id(traceService.getTraceId())
+                    .message(exception.getMessage()).build();
+        } else {//a resposta chegou preenchida de outro serviçp
+            responseError = exception.responseError;
+        }
         logger.debug("ServerErrorException {}", exception.getMessage());
 
         //Agregar exceções na central de armazenamento de exceções

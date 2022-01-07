@@ -1,6 +1,9 @@
 package alura.br.microservicesspringcloud.exception;
 
-public class ServerErrorException extends RuntimeException{
+import alura.br.microservicesspringcloud.networking.config.ResponseError;
+
+public class ServerErrorException extends RuntimeException {
+    ResponseError responseError;
 
     public ServerErrorException() {
     }

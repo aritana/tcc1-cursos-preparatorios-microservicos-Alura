@@ -1,12 +1,7 @@
 package alura.br.microservicesspringcloud.controller;
 
-import alura.br.microservicesspringcloud.config.MongoDb;
 import alura.br.microservicesspringcloud.service.ExceptionGenerator;
-import alura.br.microservicesspringcloud.service.MongoDBHandleException;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import io.swagger.annotations.Api;
-import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,15 +16,19 @@ public class ExceptionController {
     @Autowired
     ExceptionGenerator exceptionGenerator;
 
-    @GetMapping(value="/{exceptioncode}")
-    public  void exceptionSelector(@PathVariable("exceptioncode")String exceptionCodeInitCause){
+    @GetMapping(value = "/{exceptioncode}")
+    public void exceptionSelector(@PathVariable("exceptioncode") String exceptionCodeInitCause) {
 
-        switch (exceptionCodeInitCause){
-            case "3"://arithmeticException
+        switch (exceptionCodeInitCause) {
+            case "1"://arithmeticException
                 exceptionGenerator.arithmeticExceptionInitCauseGenerator();
                 break;
+            case "2":
+                exceptionGenerator.arrayIndexOutOfBoundsExceptionInitCauseGenerator();
+                break;
+            case "3":
+                exceptionGenerator.nullPointerExceptionExceptionInitCauseGenerator();
             default:
         }
-
     }
 }
