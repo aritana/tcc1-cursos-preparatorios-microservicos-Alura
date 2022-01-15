@@ -1,0 +1,16 @@
+[09:43] Eduardo Campos
+    David Lo, Prem Devanbu, Thomas Zimmermann
+<https://teams.microsoft.com/l/message/19:VlisOuljWCfanO47EJ69u-7_7r6EUD83Ped_EYQpD2k1@thread.tacv2/1642164235666?tenantId=ef9d67f2-bd3f-4e0c-84ba-3ffc81ab1c83&amp;groupId=0fb57e06-73e9-405c-9fa1-592df3a9525d&amp;parentMessageId=1642161148626&amp;teamName=Orientandos de TCC - 2021/2&amp;channelName=Geral&amp;createdTime=1642164235666>
+
+Lo et al
+
+Lo et al. [1] fizeram uma abordagem para rastreamento de microsserviços usando o banco de dados PostgreSQL e o framework Django.
+
+[09:45] Eduardo Campos
+    Nesse trabalho, eles constataram que os rastros de exceção são muito genéricos para o desenvolvedor entender.
+<https://teams.microsoft.com/l/message/19:VlisOuljWCfanO47EJ69u-7_7r6EUD83Ped_EYQpD2k1@thread.tacv2/1642164349049?tenantId=ef9d67f2-bd3f-4e0c-84ba-3ffc81ab1c83&amp;groupId=0fb57e06-73e9-405c-9fa1-592df3a9525d&amp;parentMessageId=1642161148626&amp;teamName=Orientandos de TCC - 2021/2&amp;channelName=Geral&amp;createdTime=1642164349049>
+
+
+Ao invés disso, no presente trabalho, nós usamos Java Spring Boot e MongoDB.
+
+[1] David Lo, Prem Devanbu, Thomas Zimmermann. "Toward an approach to trace evaluation". ICSE, 2019.

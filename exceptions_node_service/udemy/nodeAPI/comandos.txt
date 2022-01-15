@@ -1,0 +1,22 @@
+
+npm init #criar package.json
+npm run dev #rodar script de package.json
+npm i nodemon #  "dev": "nodemon app.js"
+npm i morgan # to see the routes
+npm cache clean --force  #limpar cache
+
+#criar .env, variaveis de ambiente
+#usar  dotenv para acessar .env
+npm i dotenv
+
+#Para mongo
+npm i mongoose
+
+#express
+npm i express
+
+//secrets for understand Node
+javaScript enviroment browser/server
+Functions/call back functions
+event loop
+asynchronous(non-blocking )x synchronous(blocking)
