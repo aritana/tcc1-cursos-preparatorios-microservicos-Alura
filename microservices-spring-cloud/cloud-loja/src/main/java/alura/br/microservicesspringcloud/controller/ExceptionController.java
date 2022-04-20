@@ -23,7 +23,7 @@ public class ExceptionController {
     @GetMapping(value = "/{exceptioncode}/{service}")
     public void exceptionSelector(@PathVariable("exceptioncode") String exceptionCodeInitCause,@PathVariable("service") String service) {
 
-        if(service.equals("2")){//The exception will be generated in this service
+        if(service.equals("1")){//The exception will be generated in this service
             switch (exceptionCodeInitCause) {
                 case "1"://arithmeticException
                     exceptionGenerator.arithmeticExceptionInitCauseGenerator();

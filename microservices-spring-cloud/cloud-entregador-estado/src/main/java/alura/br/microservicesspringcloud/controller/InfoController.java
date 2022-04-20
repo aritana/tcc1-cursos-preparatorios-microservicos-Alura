@@ -31,6 +31,7 @@ public class InfoController {
     FornecedorCidadeService fornecedorCidadeService;
     private static Logger logger = LoggerFactory.getLogger(SLF4JLogger.class);
 
+    //mapear exececao de cidade parada
     @GetMapping(value = "/{estado}/{cidade}")
     public ResponseEntity<InfoFornecedorDto> getInfoPorEstado(@PathVariable("estado")  @NotEmpty @NotNull String estado, @PathVariable("cidade") String cidade) throws Exception {
 

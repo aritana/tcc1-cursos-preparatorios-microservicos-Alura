@@ -1,10 +1,7 @@
 package alura.br.microservicesspringcloud.controller;
 
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api
 @RestController
@@ -12,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping(value="/{firstname}/{lastname}")
-    public  String hello(@PathVariable("firstname")String firstname, @PathVariable("lastname")String lastname){
+    public  String hello(@PathVariable("firstname")String firstname, @PathVariable("lastname")String lastname,@RequestHeader("Content-Type") String language){
         return String.format("\"message\": \"Hello %s %s\" ", firstname, lastname);
     }
 }
